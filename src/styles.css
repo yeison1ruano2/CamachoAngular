@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+html,body{
+    height: 100%;
+}
+
+.wrapper{
+    background-color:#f5f5f5;
+    height:auto;
+    align-items:center;
+    justify-content:center;
+    display:flex; 
+}
+
+.logo{
+    height:130px;
+    margin-bottom:10px;
+}
+
+.body{
+    width: 100%;
+    max-width: 330px;
+    margin:auto;
+    padding:15px; 
+    text-align: center;   
+}
+
+.form-floating{
+    text-align: center;
+}
+
+.errorlabel{
+    margin-left:5px;
+    margin-top:3px;
+}
+
+.contenedor-formulario{
+    background-color:#f5f5f5;
+    position:center;
+    justify-content:center;
+    align-items:center;
+}
+
+.formulario{
+    justify-content:center;
+    align-items:center;
+}
+
+.row{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flexbox;
+    width: 100%;
+    padding-left: 400px;
+    padding-right: 400px;
+}
+
+.col-md{
+    display: inline-block;
+}
+
+.contenedor-button{
+    width: 100%;
+    padding-left: 400px;
+    padding-right: 400px;
+}
+
+.contenedor-principal-matriculas{
+    background-color:green;
+}
+
+.contenedor-formulario-matriculas{
+    background-color:blue;
+}
+.container{
+    background-image: url('./assets/img/camacho.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}

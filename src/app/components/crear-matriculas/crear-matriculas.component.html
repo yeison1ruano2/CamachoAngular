@@ -1,0 +1,125 @@
+<div class="wrapper ">
+    <div class="body">
+      <img class="logo" src="../../../assets/img/login.png" alt="Login image">
+      <h1>Registro de Sesión</h1> 
+    </div>  
+  </div>
+<div class="contenedor-formulario">
+    <form class="formulario"
+    #LoginForm="ngForm"
+    (ngSubmit) = "registrarUser(LoginForm.value)"
+    [formGroup] = "registrarMatriculas">
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="text" ngModel name="nombre" formControlName="nombre" class="form-control"  placeholder="Nombre">
+            <label>Nombre</label>
+            <span 
+            *ngIf="registrarMatriculas.get('nombre')?.hasError('required') && registrarMatriculas.get('nombre')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="text" ngModel name="apellido" formControlName="apellido" class="form-control"  placeholder="Apellido">
+            <label>Apellido</label>
+            <span 
+            *ngIf="registrarMatriculas.get('apellido')?.hasError('required') && registrarMatriculas.get('apellido')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="email" ngModel name="email" formControlName="email" class="form-control"  placeholder="Correo Electronico">
+            <label>Correo Electronico</label>
+            <span 
+            *ngIf="registrarMatriculas.get('email')?.hasError('required') && registrarMatriculas.get('email')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="password" ngModel name="password" formControlName="password" class="form-control"  placeholder="Contraseña">
+            <label>Contraseña</label>
+            <span 
+            *ngIf="registrarMatriculas.get('password')?.hasError('required') && registrarMatriculas.get('password')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="password" ngModel name="repeatPassword" formControlName="repeatPassword" class="form-control"  placeholder="Repetir Contraseña">
+            <label>Repetir Contraseña</label>
+            <span 
+            *ngIf="registrarMatriculas.get('repeatPassword')?.hasError('required') && registrarMatriculas.get('repeatPassword')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="text" ngModel name="cedula" formControlName="cedula" class="form-control"  placeholder="Cedula">
+            <label>Cedula</label>
+            <span 
+            *ngIf="registrarMatriculas.get('cedula')?.hasError('required') && registrarMatriculas.get('cedula')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <select type="text" ngModel name="jornada" formControlName="jornada" class="form-control" aria-label="Floating label select example">
+              <option value="Mañana">Mañana</option>
+              <option value="Noche">Noche</option>
+            </select>
+            <label>Jornada</label>
+            <span 
+            *ngIf="registrarMatriculas.get('jornada')?.hasError('required') && registrarMatriculas.get('jornada')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <select type="text" ngModel  name="sede" formControlName="sede" class="form-control" aria-label="Floating label select example">
+              <option value="Norte">Norte</option>
+              <option value="Sur">Sur</option>
+            </select>
+            <label>Sede</label>
+            <span 
+            *ngIf="registrarMatriculas.get('sede')?.hasError('required') && registrarMatriculas.get('sede')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="contenedor-button d-grid gap-2 mb-3 mt-4">
+        <button  class="btn btn-primary btn-lg" [disabled]="registrarMatriculas.invalid"   type="submit">Registrar</button>
+      </div>
+      <div class="contenedor-button d-grid gap-2 mb-3">
+        <button  routerLink="/login" class="btn btn-danger btn-lg" type="button">Volver</button>
+      </div> 
+    </form>
+    
+  </div>

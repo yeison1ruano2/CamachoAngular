@@ -1,0 +1,83 @@
+<div class="wrapper ">
+    <div class="body">
+      <img class="logo" src="../../../assets/img/login.png" alt="Login image">
+      <h1>Registro de Materias</h1> 
+    </div>  
+  </div>
+<div class="contenedor-formulario">
+    <form class="formulario"
+    #materiaForm="ngForm"
+    (ngSubmit) = "guardarMateria(materiaForm.value)"
+    [formGroup] = "registrarMateria">
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="number" ngModel name="codigo" formControlName="codigo" class="form-control"  placeholder="Codigo">
+            <label>Codigo</label>
+            <span 
+            *ngIf="registrarMateria.get('codigo')?.hasError('required') && registrarMateria.get('codigo')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="text" ngModel name="descripcion" formControlName="descripcion" class="form-control"  placeholder="Descripción">
+            <label>Descripción</label>
+            <span 
+            *ngIf="registrarMateria.get('descripcion')?.hasError('required') && registrarMateria.get('descripcion')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="number" ngModel name="grupo" formControlName="grupo" class="form-control"  placeholder="Grupo">
+            <label>Grupo</label>
+            <span 
+            *ngIf="registrarMateria.get('grupo')?.hasError('required') && registrarMateria.get('grupo')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="number" ngModel name="semestre" formControlName="semestre" class="form-control"  placeholder="Semestre">
+            <label>Semestre</label>
+            <span 
+            *ngIf="registrarMateria.get('semestre')?.hasError('required') && registrarMateria.get('semestre')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="text" ngModel name="ih" formControlName="ih" class="form-control"  placeholder="IH">
+            <label>IH</label>
+            <span 
+            *ngIf="registrarMateria.get('ih')?.hasError('required') && registrarMateria.get('ih')?.touched" 
+            class="text-danger errorlabel">
+              Este <strong>campo</strong> es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contenedor-button d-grid gap-2 mb-3 mt-4">
+        <button  class="btn btn-primary btn-lg" [disabled]="registrarMateria.invalid"   type="submit">Registrar</button>
+      </div>
+      <div class="contenedor-button d-grid gap-2 mb-3">
+        <button  routerLink="/list-materias" class="btn btn-danger btn-lg" type="button">Volver</button>
+      </div> 
+    </form>
+</div>
