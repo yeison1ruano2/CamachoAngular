@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.services';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -9,6 +10,9 @@ import { FirebaseCodeErrorService } from 'src/app/services/firebase-code-error.s
 import { createFind } from 'rxjs/internal/operators/find';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
+import { MateriaService } from 'src/app/services/materia.services';
+
+
 
 @Component({
   selector: 'app-crear-materias',
@@ -20,6 +24,7 @@ export class CrearMateriasComponent implements OnInit {
   registrarMateria:FormGroup;
   submitted=false;
   constructor(
+    public materiaService:MateriaService,
     //private firebase:FirebaseDatabase,
     private firebaseError:FirebaseCodeErrorService,
     private auth:Auth,
@@ -40,20 +45,7 @@ export class CrearMateriasComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   
-  agregarMateria(value:any){
-    const codigo=this.registrarMateria.value.codigo;
-    const descripcion=this.registrarMateria.value.descripcion;
-    const grupo=this.registrarMateria.value.grupo;
-    const semestre=this.registrarMateria.value.semestre;
-    const ih=this.registrarMateria.value.ih;
-
-    
-
-  }
-
-
   guardarMateria(value:any){
     const materia:any={
       codigo:this.registrarMateria.value.codigo,
@@ -63,7 +55,12 @@ export class CrearMateriasComponent implements OnInit {
       ih:this.registrarMateria.value.ih,
       //fechaCreacion:Date.now(),
     }
+    this.materiaService.agregarMateria(materia);
+
+    
+    this.registrarMateria.reset();
     console.log(materia);
+    console.log(this.registrarMateria.value);
     console.log('Aqui empieza el metodo');
     this.toastr.success('Materia Registrada con Exito','Confirmación');
     //this.router.navigate(['/list-materias']);

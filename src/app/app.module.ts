@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
+import { HttpClientModule} from '@angular/common/http';
 
 
 //componentes
@@ -27,6 +28,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { CrearMatriculasComponent } from './components/crear-matriculas/crear-matriculas.component';
 import { CrearMateriasComponent } from './components/crear-materias/crear-materias.component';
 import { ListMateriasComponent } from './components/list-materias/list-materias.component';
+
 
 
 @NgModule({
@@ -55,7 +57,8 @@ import { ListMateriasComponent } from './components/list-materias/list-materias.
     provideDatabase(() => getDatabase()),
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
