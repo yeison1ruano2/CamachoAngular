@@ -23,4 +23,9 @@ export class MateriaService {
       console.log(error);
     });
   }
+
+  readMaterias(){
+    return this.db.list('/materias/').valueChanges();
+
+  }
 }

@@ -57,12 +57,10 @@ export class CrearMateriasComponent implements OnInit {
     }
     this.materiaService.agregarMateria(materia);
 
-    
-    this.registrarMateria.reset();
     console.log(materia);
     console.log(this.registrarMateria.value);
-    console.log('Aqui empieza el metodo');
     this.toastr.success('Materia Registrada con Exito','Confirmación');
+    this.registrarMateria.reset();
     //this.router.navigate(['/list-materias']);
   }
 

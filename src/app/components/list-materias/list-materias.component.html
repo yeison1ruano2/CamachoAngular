@@ -6,20 +6,23 @@
         <table class="table mt-5 table-striped">
           <thead>
             <tr>
-              <th>Codigo</th>
+              <th *ngFor=" let header of headers">
+                {{header}}
+              </th>
+              <!-- <th>Codigo</th>
               <th>Descripción</th>
               <th>Grupo</th>
               <th>Semestre</th>
-              <th>IH</th>
+              <th>IH</th> -->
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>matematicas</td>
-              <td>3</td>
-              <td>1</td>
-              <td>2</td>
+            <tr *ngFor="let data of tableData">
+              <th>{{data.codigo}}</th>
+              <td>{{data.descripcion}}</td>
+              <td>{{data.grupo}}</td>
+              <td>{{data.semestre}}</td>
+              <td>{{data.ih}}</td>
             </tr>
           </tbody>
         </table>
