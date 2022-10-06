@@ -79,3 +79,8 @@ html,body{
     background-size: cover;
     height: 100vh;
 }
+
+.buttonagregar{
+    margin-left: 10px;
+    margin-right: 30px;
+}
