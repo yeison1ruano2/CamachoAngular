@@ -22,10 +22,10 @@ export class ListMateriasComponent implements OnInit {
     this.getAllMaterias();
   }
 
+
+  
   getAllMaterias(){
     this.materiaService.readMaterias().subscribe(res=>{
-      console.log('Materias obtenidas');
-      console.log(res);
       this.tableData=res;
     });
   }

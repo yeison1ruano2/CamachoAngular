@@ -1,11 +1,14 @@
+import { MateriasinputService } from './../../services/materiasinput.services';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
-import { Database,set,ref } from '@angular/fire/database';
+import { Database } from '@angular/fire/database';
 import { FirebaseCodeErrorService } from 'src/app/services/firebase-code-error.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { MateriaService } from 'src/app/services/materia.services';
+
 
 @Component({
   selector: 'app-crear-matriculas',
@@ -15,7 +18,11 @@ import { FirebaseCodeErrorService } from 'src/app/services/firebase-code-error.s
 export class CrearMatriculasComponent implements OnInit {
 
   registrarMatriculas:FormGroup;
+  //const descripcion="descripcion";
   constructor(
+    public materiasServices:MateriaService,
+    public db:AngularFireDatabase,
+    private materiasInputService:MateriasinputService,
     private firebaseError:FirebaseCodeErrorService,
     private auth:Auth,
     private database:Database,
@@ -26,21 +33,80 @@ export class CrearMatriculasComponent implements OnInit {
     ) { 
     this.registrarMatriculas=this.fb.group({
       materia:['',Validators.required],
-      nombre:['',Validators.required],
-      apellido:['',Validators.required],
-      email:['',Validators.required],
-      password:['',Validators.required],
-      repeatPassword:['',Validators.required],
-      cedula:['',Validators.required],
-      jornada:['',Validators.required],
-      sede:['',Validators.required],
     })
   }
 
+  tableDescripcion:any;
+  tableDbDescripcion:any;
+
   ngOnInit(): void {
+    this.getAllMaterias();
   }
 
-  registrarUser(value:any){
+  guardarMatricula(value:any){
+    const matricula:any={
+      materia:this.registrarMatriculas.value.materia,
+      //materiaid:this.
+      //fechaCreacion:Date.now(),
+    }
+    console.log(matricula);
+    const user=this.auth.currentUser;
+    const userid=user?.uid;
+    const email=this.auth.currentUser;
+    const emailuser=email?.email;
+    console.log(userid);
+    console.log(emailuser);
+
+    /* this.materiasInputService.readMaterias(materia);
+
+    console.log(materia);
+    console.log(this.registrarMateria.value);
+    this.toastr.success('Materia Registrada con Exito','Confirmación');
+    this.registrarMateria.reset(); */
+    //this.router.navigate(['/list-materias']);
+  }
+
+  getAllMaterias(){
+    this.materiasInputService.readMaterias().subscribe((res)=>{
+      this.tableDescripcion=res;
+    });
+  }
+
+}
+
+
+
+ /*  consultarMaterias(value:any){
+    this.materiainput.getData().subscribe(resp=>{
+      const r=Object.values(resp);
+      const user=this.auth.currentUser;
+      const userid=user?.uid;
+      const f=this.db.list(`/usuarios/${userid}/nombre/`);
+      const dbRef=this.db.list(`/materias/${userid}/`);
+      //const nombre=this.db.list(dbRef,'');
+      console.log(r);
+      console.log(f);
+      console.log('resp',resp);
+      console.log(userid);
+      console.log(dbRef);
+      //console.log(nombre);
+      
+    })
+  } */
+  /* consultarMaterias(value:any){
+    const dbRef=ref(getDatabase());
+    get(child(dbRef,`materias/${descripcion}`)).then((snapshot)=>{
+      if(snapshot.exists()){
+        console.log(snapshot.val());
+      }else{
+        console.log('Data invalible');
+      }
+    }).catch((error)=>{
+      console.log(error);
+    })
+  } */
+
+  /* registrarUser(value:any){
     const nombre=this.registrarMatriculas.value.nombre;
     const apellido=this.registrarMatriculas.value.apellido;
     const email=this.registrarMatriculas.value.email;
@@ -99,5 +165,5 @@ export class CrearMatriculasComponent implements OnInit {
       }
       //this.toastr.error(this.firebaseError(error.code),'Error');
     });
-  }
-}
+  } */
+

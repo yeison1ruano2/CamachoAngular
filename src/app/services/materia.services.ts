@@ -1,6 +1,7 @@
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from './user.services';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,10 @@ export class MateriaService {
 
   constructor(
     private httpClient: HttpClient,
-    public db:AngularFireDatabase) {
-  }
+    public db:AngularFireDatabase) 
+    {
+  
+    }
 
   agregarMateria(payload:any){
     const dbRef=this.db.list('/materias')
@@ -26,6 +29,5 @@ export class MateriaService {
 
   readMaterias(){
     return this.db.list('/materias/').valueChanges();
-
   }
 }
